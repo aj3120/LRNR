@@ -1,33 +1,62 @@
-import React,{Component} from 'react';
-import {Navbar,NavbarToggler} from 'reactstrap';
-import {Popover, PopoverHeader, PopoverBody } from 'reactstrap';    
-
-class Main extends Component{
-    constructor(props){
+import React, { Component } from 'react';
+import { Collapse } from 'reactstrap';
+import { menuItems } from './MenuItems';
+import MenuBar from './MenuBarComponent';
+import ContentSection from '../ContentComponent/ContentComponent'
+import './Menu.css';
+import { Route, Switch,Redirect } from 'react-router-dom';
+import Welcome from './welcomeComponent'
+class Main extends Component {
+    constructor(props) {
         super(props);
-        this.state={
-            isOpen:false,
-            popoverOpen:false
+        this.state = {
+            selectedMenu: menuItems.all
         }
     }
-    
-    togglerPopOver=()=>{
-        this.setState({popoverOpen:!this.state.popoverOpen})
+    selectMenu(selectedMenu) {
+        this.setState({ selectedMenu: selectedMenu })
     }
-    render(){
-        return(
-            <div>
-                <Navbar color="light" light >
-                    <NavbarToggler onClick={this.props.togglerMenu}/>
-                    <input type="text" className="col-3"/>
-                    <span>INVITE TEAM MEMBER</span>
-                        <img id="Popover1" className="profilepic" src="assets/mohanlal.jpg" alt="profile-pic"/>
-                    <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.togglerPopOver}>
-                    <PopoverHeader>Popover Title</PopoverHeader>
-                    <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
-                    </Popover>   
-                </Navbar>
-                
+    activeMenu(menuItem) {
+        if (this.state.selectedMenu === menuItem) {
+            return { borderBottom: '2px solid red' }
+        }
+        else {
+            return {}
+        }
+    }
+
+    render() {
+        return (
+            <div className="main row">
+                <Collapse isOpen={this.props.isOpen} navbar className="menubar col-3" >
+
+                    <div>
+                        <div className="menu-heading">
+                            <div className="menu-tabs row">
+                                <div className="menu-item col-3" onClick={() => this.selectMenu(menuItems.all)} style={this.activeMenu(menuItems.all)}>
+                                    {menuItems.all}
+                                </div>
+                                <div className="menu-item col-3" onClick={() => this.selectMenu(menuItems.board)} style={this.activeMenu(menuItems.board)}>
+                                    {menuItems.board}
+                                </div>
+                                <div className="menu-item col-3" onClick={() => this.selectMenu(menuItems.graph)} style={this.activeMenu(menuItems.graph)}>
+                                    {menuItems.graph}
+                                </div>
+                                <div className="menu-item col-3" onClick={() => this.selectMenu(menuItems.recent)} style={this.activeMenu(menuItems.recent)}>
+                                    {menuItems.recent}
+                                </div>
+                            </div>
+                        </div>
+
+                        <MenuBar isOpen={this.props.isOpen} />
+                    </div>
+
+                </Collapse>
+                <Switch>
+                    <Route path="/:id" component={ContentSection} />
+                    <Route exact path="/" component={Welcome}/>
+                </Switch>
+
             </div>
         );
     }

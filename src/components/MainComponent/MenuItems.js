@@ -4,8 +4,7 @@ export const menuItems={
     graph:'Graph',
     recent:'Recent'
 }
-export const menuAllList={
-    data:[
+export const menuAllList=[
         {id:1,name:'adarsh',type:'collection',hidden:false,collection:[
             {id:11,name:'aj',type:"item",hidden:true},
             {id:12,name:'aj1',type:"item",hidden:true},
@@ -22,4 +21,3 @@ export const menuAllList={
         ]},
         {id:3,name:'rajani',type:'item',hidden:false}
     ]
-}
