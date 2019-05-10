@@ -1,6 +1,5 @@
 import {actionTypes} from '../ActionTypes'
 export function contentUpdateAction(data) {
-    console.log(data)
     return {
       type: actionTypes.UPDATE_CONTENT,
       payload:data

@@ -50,6 +50,9 @@ class ContentSection extends Component {
                 addContent: ''
             })
         }
+        else{
+            alert('Please Enter Title and Description')
+        }
     }
     componentDidMount() {
         this.props.action.contentLoadingAction(parseInt(this.props.match.params.id))
@@ -70,7 +73,7 @@ class ContentSection extends Component {
                             <Media heading>
                                 <input className="col-12" type="text" placeholder="Add Title" value={this.state.addHeading} onChange={this.addHeadingChange} />
                             </Media>
-                            <input className="col-12" type="text" placeholder="Add Description" value={this.state.addContent} onChange={this.addContentChange} />
+                            <textarea className="description col-12" type="text" placeholder="Add Description" value={this.state.addContent} onChange={this.addContentChange} />
                         </Media>
                         <input type="submit" id="add-content" value="Add Item" onClick={this.addFirstContentToContentArray} />
                     </Media>
@@ -99,7 +102,7 @@ class ContentSection extends Component {
                             <Media heading>
                                 <input className="col-12" type="text" placeholder="Add Title" value={this.state.addHeading} onChange={this.addHeadingChange} />
                             </Media>
-                            <input className="col-12" type="text" placeholder="Add Description" value={this.state.addContent} onChange={this.addContentChange} />
+                            <textarea className="description col-12" type="text" placeholder="Add Description" value={this.state.addContent} onChange={this.addContentChange} />
                         </Media>
                         <input type="submit" id="add-content" value="Add Item" onClick={this.addContentToContentArray} />
                     </Media>

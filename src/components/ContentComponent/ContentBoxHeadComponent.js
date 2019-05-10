@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Editor, EditorState, ContentState,RichUtils} from "draft-js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import onClickOutside from "react-onclickoutside";
 class ContentBoxHead extends Component {
     constructor(props){
         super(props);
@@ -22,6 +23,11 @@ class ContentBoxHead extends Component {
     _onItalicClick() {
       this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
     }
+    handleClickOutside=(evt)=>{
+      if(this.state.editorButtonState==='visible'){
+          this.setState({editorButtonState:'hidden'})
+      }
+    }
     render(){
         return(
           <div>
@@ -38,4 +44,4 @@ class ContentBoxHead extends Component {
         )
     }
 }
-export default ContentBoxHead
+export default onClickOutside(ContentBoxHead)

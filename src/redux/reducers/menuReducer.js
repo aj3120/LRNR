@@ -16,7 +16,6 @@ function menuListReducer(state = initialState, action) {
           localStorage.setItem('menu',JSON.stringify(menuAllList))
         }
         let menu_from_storage=JSON.parse(localStorage.getItem('menu'))
-        console.log(menu_from_storage)
         return {...state,menuListdata:menu_from_storage,flag:'nochange'}  
       default:
         return state

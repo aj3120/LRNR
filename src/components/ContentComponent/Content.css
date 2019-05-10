@@ -9,6 +9,7 @@
     overflow: auto;
 }
 #add-content {
+    outline: none;
     float:right;
     background-color: gray;
     border:none;
@@ -38,4 +39,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+.description{
+    border: none;
 }
