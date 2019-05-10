@@ -26,13 +26,7 @@ class ContentBoxBody extends Component {
     _onItalicClick() {
         this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
     }
-    handleClickOutside=(evt)=>{
-      if(this.state.editorButtonState==='visible'){
-          this.setState({editorButtonState:'hidden'})
-      }
-    }
     render() {
-        // const left=this.state.editorPosition.x-this.contentbox.current.offsetTop
         return (
             <div className="content-box" >
                 <div className="editbox"  ref={this.editbox} style={{visibility:this.state.editorButtonState}}>

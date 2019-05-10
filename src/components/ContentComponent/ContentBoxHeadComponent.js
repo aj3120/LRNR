@@ -12,13 +12,9 @@ class ContentBoxHead extends Component {
         }
     }
     onChange = (editorState) => {
-      if(window.getSelection().toString()!==""){
-        let s = window.getSelection();
-        let oRange = s.getRangeAt(0); //get the text range
-        let oRect = oRange.getBoundingClientRect();
-        this.setState({ editorState:editorState,editorButtonState:'visible' ,editorPosition:{x:oRect.left-this.contentbox.current.offsetLeft,y:oRect.top.y-this.contentbox.current.offsetTop}})
-    
-    }
+      if(window.getSelection().toString()!==undefined){    
+        this.setState({ editorState:editorState,editorButtonState:'visible'})
+      }
     };
     _onBoldClick() {
       this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
